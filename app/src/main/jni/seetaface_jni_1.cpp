@@ -32,9 +32,10 @@ static std::vector<SeetaPointF> points68;
 //static Seetaface seetaNet;
 static int init=1;
 
-//#define LOG_TAG "YLZ_seetaface"
-//#define LOGI(...) __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__) // 定义LOGI类型
-//#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__) // 定义LOGE类型
+#define LOG_TAG "YLZ_seetaface"
+#define LOGI(...) __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__) // 定义LOGI类型
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__) // 定义LOGE类型
+
 
 bool BitmapToMatrix(JNIEnv * env, jobject obj_bitmap, cv::Mat & matrix) {
     void * bitmapPixels;                                            // Save picture pixel data
@@ -374,7 +375,7 @@ Java_com_example_camerx_SeetaFace_detectFaceEx(JNIEnv *env, jobject thiz, jobjec
     SeetaRect tsbox ;
     bool bit_cv = BitmapToMatrix(env,input,timage);  //bitmap转cvMat,格式还为RGBA
     cv::cvtColor(timage,tcimage,COLOR_RGBA2BGR);  //
-  //  LOGI("Java_com_example_testcamera_SeetaFace_detectFace start 2 ");
+    LOGI("Java_com_example_testcamera_SeetaFace_detectFace start %s ",iflag);
     //cv图片转Seeta图片
     tsimage.width = tcimage.cols;
     tsimage.height = tcimage.rows;
@@ -382,7 +383,7 @@ Java_com_example_camerx_SeetaFace_detectFaceEx(JNIEnv *env, jobject thiz, jobjec
     tsimage.data = tcimage.data;
     SeetaFaceInfoArray faces = seetaNet.detect_face(tsimage); //调用人脸检测
     if (faces.size<=0){
-  //      LOGI("Java_com_example_testcamera_SeetaFace_detectFace start 3 ");
+        LOGI("Java_com_example_testcamera_SeetaFace_detectFace start 3 ");
         return -1;
     }else{
         auto face = faces.data[0];
@@ -430,9 +431,9 @@ Java_com_example_camerx_SeetaFace_detectFaceEx(JNIEnv *env, jobject thiz, jobjec
             draw_points(tcimage, points68);  //五官画图
        }
 
-    //    LOGI("Java_com_example_testcamera_SeetaFace_detectDraw 000 cols=%d rows=%d",imageOut.cols,imageOut.rows);
+        LOGI("Java_com_example_testcamera_SeetaFace_detectDraw 000 cols=%d rows=%d",imageOut.cols,imageOut.rows);
         bool cv_bit = MatrixToBitmap(env,tcimage,input);
-    //    LOGI("Java_com_example_testcamera_SeetaFace_detectDraw %d ",(int)cv_bit);
+        LOGI("Java_com_example_testcamera_SeetaFace_detectDraw %d ",(int)cv_bit);
    }
    return age;
 }

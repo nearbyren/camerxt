@@ -13,3 +13,10 @@
 .externalNativeBuild
 .cxx
 local.properties
+app/src/main/assets/age_predictor.csta
+app/src/main/assets/fas_first.csta
+app/src/main/assets/fas_second.csta
+app/src/main/jni/arm64-v8a/libopencv_java4.so
+app/src/main/jni/armeabi-v7a/libopencv_java4.so
+app/src/main/libs/arm64-v8a/libopencv_java4.so
+app/src/main/libs/armeabi-v7a/libopencv_java4.so

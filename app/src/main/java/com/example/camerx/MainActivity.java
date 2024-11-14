@@ -470,6 +470,7 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
     private  int  seetaFace_detectEx(Bitmap bm){
+        Log.i("seetaFace_detectEx", "我来了呀 seetaFace_detectEx java:");
         int nResult =  seetaFace.detectFaceEx(bm,27);// 1 detect  2 point5 4 point68 8 sex  16 age
         if(nResult < 0) {
             Log.i("seetaFace_detectEx", "seetaFace_detectEx:" + nResult);
